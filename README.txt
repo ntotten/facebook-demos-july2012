@@ -1,4 +1,4 @@
-Below is the locations of the following demos:
+Below are the locations of the following demos:
 
 1. PHP Demo (https://github.com/facebook/facebook-php-sdk/tree/master/examples)
 2. ASP.NET MVC with Server Side Flow
