@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '134217053385938', // App ID
+                //channelUrl: '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+                status: true, // check login status
+                cookie: true, // enable cookies to allow the server to access the session
+                xfbml: true  // parse XFBML
+            });
+            FB.api('/me', function (result) {
+                if (result) {
+                    if (result.error) {
+                        alert(result.error.message);
+                    } else {
+                        var image = document.getElementById('image');
+                        image.src = 'https://graph.facebook.com/' + user.id + '/picture';
+                        var name = document.getElementById('name');
+                        name.innerHTML = user.name
+                    }
+                }
+            });
+        };
+        // Load the SDK Asynchronously
+        (function (d) {
+            var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement('script'); js.id = id; js.async = true;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            ref.parentNode.insertBefore(js, ref);
+        }(document));
+    </script>
+
+    <div align="center">
+        <img id="image" />
+        <div id="name"></div>
+    </div>
+
+
+    @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
